@@ -5,6 +5,39 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Chiesa Audio</title>
+    <style>
+        body {
+            background-color: #800000; /* Bordeaux chiaro */
+            color: white;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        header, footer {
+            text-align: center;
+            padding: 20px;
+        }
+        main {
+            padding: 20px;
+        }
+        section {
+            text-align: center;
+        }
+        .audio-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 10px 0;
+        }
+        .audio-container img {
+            margin-right: 10px;
+            width: 30px;
+            height: auto;
+        }
+        audio {
+            outline: none;
+        }
+    </style>
 </head>
 <body>
     <header>
@@ -15,17 +48,17 @@
             <h2>Ascolta il nostro messaggio</h2>
             <p>Abbiamo due versioni audio del nostro messaggio: una in inglese e una in italiano.</p>
 
-            <div>
-                <h3>English</h3>
-                <audio controls>
+            <div class="audio-container">
+                <img src="flag_uk.png" alt="Bandiera inglese">
+                <audio id="audio-en" controls>
                     <source src="san michele inglese.mp3" type="audio/mpeg">
                     Il tuo browser non supporta il tag audio.
                 </audio>
             </div>
 
-            <div>
-                <h3>Audio Italiano</h3>
-                <audio controls>
+            <div class="audio-container">
+                <img src="flag_it.png" alt="Bandiera italiana">
+                <audio id="audio-it" controls>
                     <source src="san michele italiano.mp3" type="audio/mpeg">
                     Il tuo browser non supporta il tag audio.
                 </audio>
@@ -35,5 +68,19 @@
     <footer>
         <p>&copy; 2024 Chiesa. Tutti i diritti riservati.</p>
     </footer>
+
+    <script>
+        // Funzione per fermare un audio quando un altro viene riprodotto
+        const audioEn = document.getElementById('audio-en');
+        const audioIt = document.getElementById('audio-it');
+
+        audioEn.addEventListener('play', () => {
+            audioIt.pause();
+        });
+
+        audioIt.addEventListener('play', () => {
+            audioEn.pause();
+        });
+    </script>
 </body>
 </html>
